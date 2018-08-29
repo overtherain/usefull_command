@@ -413,7 +413,7 @@ SSH免登陆服务器配置
     public = yes
     writable = yes
 
-;   valid users = [myname]
+    ;valid users = [myname]
     create mask = 0755
     directory mask =0755
     force user =nobody
