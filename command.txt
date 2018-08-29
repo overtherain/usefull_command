@@ -255,12 +255,18 @@ MAC 禁用dashboard
 
     defaults write com.apple.dashboard mcx-disabled -boolean YES && killall Dock
 
-#########################################################
-#############ubuntu 配置 git 服务器 #########################
+########################BEGIN#############################
+
+#############ubuntu 配置 git 服务器 #####################
+
     1.安装git ssh gitolite
+
     2.创建git库账户 sudo adduser --system --group --shell /bin/bash git
+
     3.创建git-admin管理账户的ssh-keygen，并将公钥scp至git账户。
+
     4.在git账户用git-admin的ssh-key初始化 gl-setup xxx.pub
+
     5.在git-admin账户clone管理分支 git clone git@xxx.xxx.xxx.xxx:gitolite-admin
         5.1 该项目有两个文件夹conf keydir
         5.2 权限设置：conf/gitolite.conf
@@ -281,7 +287,7 @@ MAC 禁用dashboard
                 RW+    =@group
                 @group =[user1] [user2] ...
         6.2 用gitadmin账户add,commit,push
-      
+
     7.安装gitweb
         7.1 sudo apt-get install gitweb hightlight
         7.2 在目录/etc/apache2/sites-available/ 创建gitweb.conf
@@ -294,10 +300,11 @@ MAC 禁用dashboard
             </Directory>
         7.3 修改/etc/gitweb.conf中的$projectroot
         7.4 如过localhost/gitweb.cgi不显示项目,需修改项目权限为755
-          
-#########################################################
+
+#######################END##############################
 
 ubuntu vi编辑模式，backspace，上，下，左，右，无效的解决方法
+
 1.重新安装VIM
 2.在.bashrc中添加
 
@@ -305,13 +312,18 @@ ubuntu vi编辑模式，backspace，上，下，左，右，无效的解决方�
     set backspace=2 
 
 SSH免登陆服务器配置
+
 1.server端在~/.ssh/目录创建authorized_keys文件，设置权限600
+
 2.user端ssh-keygen -t rsa -C "mail"生成key，将pub key 用 scp xxx.pub server@xxx.xxx.xxx.xxx:.ssh/至服务端
+
 3.user端在~/.ssh/配置config文件
+
     Host xxx.xxx.xxx.xxx
     HostName xxx.xxx.xxx.xxx
     User          xxx
     IdentityFile  ~/.ssh/xxx    （此处为私钥）
+
 4.known_hosts内保存的为server地址
  
 给用户添加root权限,修改/etc/group
@@ -322,6 +334,7 @@ SSH免登陆服务器配置
 
 
 修改ubuntu ip:修改/etc/network/interfaces
+
 添加固定ip:
 
     auto eth0
@@ -331,6 +344,7 @@ SSH免登陆服务器配置
     gateway xxx.xxx.xxx.xxx
 
 修改ubuntu 系统语言
+
 修改/etc/default/locale
 
     LANG="en_US.UTF-8"
@@ -342,8 +356,9 @@ SSH免登陆服务器配置
 
     sudo apt-get install zhcon
 
-###########################################################
+
 ######## 配置samba服务 ###############
+
 安装samba
 
     sudo apt-get install samba smbfs
@@ -361,6 +376,7 @@ SSH免登陆服务器配置
     [myname]= "networkusername"
 
 修改/etc/samba/smb.conf
+
 添加
 
 [share]
@@ -412,29 +428,29 @@ SSH免登陆服务器配置
     du --help
 
 **************************************************
-**
-**   [root@bsso yayu]# du -h --max-depth=1 work/testing  
-**   27M     work/testing/logs  
-**   35M     work/testing  
-**     
-**   [root@bsso yayu]# du -h --max-depth=1 work/testing/*  
-**   8.0K    work/testing/func.php  
-**   27M     work/testing/logs  
-**   8.1M    work/testing/nohup.out  
-**   8.0K    work/testing/testing_c.php  
-**   12K     work/testing/testing_func_reg.php  
-**   8.0K    work/testing/testing_get.php  
-**   8.0K    work/testing/testing_g.php  
-**   8.0K    work/testing/var.php  
-**     
-**   [root@bsso yayu]# du -h --max-depth=1 work/testing/logs/  
-**   27M     work/testing/logs/  
-**     
-**   [root@bsso yayu]# du -h --max-depth=1 work/testing/logs/*  
-**   24K     work/testing/logs/errdate.log_show.log  
-**   8.0K    work/testing/logs/pertime_show.log  
-**   27M     work/testing/logs/show.log  
-**
+    
+    [root@bsso yayu]# du -h --max-depth=1 work/testing  
+    27M     work/testing/logs  
+    35M     work/testing  
+    
+    [root@bsso yayu]# du -h --max-depth=1 work/testing/*  
+    8.0K    work/testing/func.php  
+    27M     work/testing/logs  
+    8.1M    work/testing/nohup.out  
+    8.0K    work/testing/testing_c.php  
+    12K     work/testing/testing_func_reg.php  
+    8.0K    work/testing/testing_get.php  
+    8.0K    work/testing/testing_g.php  
+    8.0K    work/testing/var.php  
+    
+    [root@bsso yayu]# du -h --max-depth=1 work/testing/logs/  
+    27M     work/testing/logs/  
+    
+    [root@bsso yayu]# du -h --max-depth=1 work/testing/logs/*  
+    24K     work/testing/logs/errdate.log_show.log  
+    8.0K    work/testing/logs/pertime_show.log  
+    27M     work/testing/logs/show.log  
+    
 **************************************************
 
 安装流媒体服务Darwin Streaming Server
