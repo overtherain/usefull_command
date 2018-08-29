@@ -25,11 +25,11 @@ sudo chmod a+rw -Rv /xxx/xxx/xxx
 
 3、文件夹建立软链接（用绝对地址）
 
-　　ln -s 源地址  目的地址
+    ln -s 源地址  目的地址
 
-　　比如我把linux文件系统rootfs_dir软链接到/home/jyg/目录下
+    比如我把linux文件系统rootfs_dir软链接到/home/jyg/目录下
 
-　　ln -s /opt/linux/rootfs_dir  /home/jyg/rootfs_dir就可以了
+    ln -s /opt/linux/rootfs_dir  /home/jyg/rootfs_dir就可以了
            文件目录              目标目录
 
 
@@ -326,9 +326,9 @@ git clone --bare -l /home/proj/.git /pub/scm/proj.git
 
 修改workgroup
   workgroup = [workgroup](用户组)
-　　display charset = UTF-8
-　　unix charset = UTF-8
-　　dos charset = cp936
+    display charset = UTF-8
+    unix charset = UTF-8
+    dos charset = cp936
  
 保存并关闭配置文件，在终端中输入如下命令
 sudo testparm
