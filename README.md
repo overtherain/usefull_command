@@ -590,16 +590,4 @@ defaultbranch = master
 defaultremote = origin
 
 
-服务器密码:
-10.2
-bianyi      blf@123
-
-10.5
-bianyi      blf@123
-
-10.3
-code        blf@123
-gitadmin    blf@123
-git         blf@123
-
 
