@@ -2,10 +2,12 @@
 
 1. 修改默认网站目录
 ubuntu8.10下修改apache2的默认文档目录 默认是在/var/www里面
-sudo gedit /etc/apache2/sites-enabled/000-default
+
+    sudo gedit /etc/apache2/sites-enabled/000-default
  
 在文档中找到 DocumentRoot 在后面修改你要放置网页文件的目录。
 修改完了 别忘记重启apache2服务器
+
     sudo /etc/init.d/apache2 restart
 
 2. 修改默认主页
@@ -13,7 +15,9 @@ sudo gedit /etc/apache2/sites-enabled/000-default
 找到 DirectoryIndex 在后面添加 如index.php等
 不过随apache2的版本不同 文件的放置位置不一样 我在ubuntu8.10下面配置文件就不一样。
 别怕 输入这个命令:
+
     grep -iR DirectoryIndex /etc/apache2
+
 查看 DirectoryIndex 在apache2那个文件里面。
 
 
@@ -22,50 +26,54 @@ sudo gedit /etc/apache2/sites-enabled/000-default
     sudo chmod a+rw 777/666 /xxx/xxx/xxx 
     sudo chmod a+rw -Rv /xxx/xxx/xxx
 
-
-
 文件夹建立软链接（用绝对地址）
 
     ln -s 源地址  目的地址
 
-    比如我把linux文件系统rootfs_dir软链接到/home/jyg/目录下
+比如我把linux文件系统rootfs_dir软链接到/home/jyg/目录下
 
     ln -s /opt/linux/rootfs_dir  /home/jyg/rootfs_dir
-    
     ln -s [文件目录] [目标目录]
 
 
 删除上一个commit:
 
     git reset --hard <commit_id>
-
     git push origin HEAD --force
 
 
 5.安装deb包
+
     sudo dpkg -i iptux.deb
+
 #安装iptux.deb软件包（其中-i等价于--install）
 
 =====================================================================================================================
 
 模块编译:
+
     mmm xxx/xxx/xxx
     make snod
-重定向日志:
-    make -j24 2>&1 | tee log.txt
-clone项目:
-    git clone git@192.168.1.9:sp7730.git
 
+重定向日志:
+
+    make -j24 2>&1 | tee log.txt
+
+clone项目:
+
+    git clone git@192.168.1.9:sp7730.git
     git push origin <branch>:<branch>
 
 
 高通编译:
-  ./cgbuild.sh
+
+    ./cgbuild.sh
 
     cd ~\code\L9011A\qualcomm_8916\common\build
     python update_common_info.py
 
 镜像文件
+
     ~\code\L9011A\qualcomm_8916\common\build\bin\asic\sparse_images
     ~\code\L9011A\qualcomm_8916\LINUX\android\out\target\product\msm8916_32_512
 
@@ -82,14 +90,23 @@ fastboot 烧录:
     fastboot flash system system.img
 
 树形显示log:
+
     git log --graph
+
 显示log的状态:
+
     git log --name-status
+
 终端配置:
-    vi /home/zhangshaobin/.bashrc 
+
+    vi /home/zhangshaobin/.bashrc
+
 命令历史记录:
-    vi /home/zhangshaobin/.bash_history 
+
+    vi /home/zhangshaobin/.bash_history
+
 命令记录输出:
+
     history
 
 
@@ -104,14 +121,20 @@ vim
 
 
 获取patch文件:
-    git log --graph --name-status
-制作patch diff包:
-    git show 6764d5e40c87a9e2642f7be622c0130c37db1d61 > name.diff 
 
+    git log --graph --name-status
+
+制作patch diff包:
+
+    git show 6764d5e40c87a9e2642f7be622c0130c37db1d61 > name.diff 
     cat name.diff | grep diff | awk '{print $4}' > tt
+
     删除路径前的a/b:
+        
         vi tt
+        
     把tt内的文件打包:
+        
         cat tt | xargs tar -cavf name.tar.gz
         tar -cavf name.tar.gz `cat tt`
 
@@ -129,54 +152,71 @@ LOG
  
  
 find命令
+
     find frameworks/ -name AudioPolicyManagerBase.cpp
+
 find 路径 -name 文件名
 
 修改commit 信息:
+
     git commit --amend
 
 回退提交的某次记录:
+
     git revert commitid
 
 查询ip:
+
     ifconfig ubuntu 
  
 MTK EngineerMode *#*#3646633#*#*
 
 查看提交的id:
+
     git log 
     git format-patch <commit-id>
 
 adb获取ro路径:
+
     getprop ro.product.partitionpath
     
 从其他分支合入commit修改:
-    git cherry-pick <commit-id>
 
+    git cherry-pick <commit-id>
     git diff --cached > tmp.diff
 
 压缩命令
     仅打包，不压缩！
-        tar -cvf /tmp/etc.tar /etc  
+    
+        tar -cvf /tmp/etc.tar /etc
+    
     打包后，以 gzip 压缩
+    
         tar -czvf /tmp/etc.tar.gz /etc
+    
     打包后，以 bzip2 压缩
+    
         tar -cjvf /tmp/etc.tar.bz2 /etc
 
 解压
+
     tar -xzvf /tmp/etc.tar.gz
 
 卫星信号
+
     *#*#2266#*#*
 
 
 1.将当前目录下所有.txt文件打包并压缩归档到文件this.tar.gz，我们可以使用
+
     tar czvf this.tar.gz ./*.txt
 
 2.将当前目录下的this.tar.gz中的文件解压到当前目录我们可以使用
+
     tar xzvf this.tar.gz ./
 
 ubuntu 个人文件夹 中文转英文
+
     export LANG=en_US
     xdg-user-dirs-gtk-update
 
@@ -189,7 +229,6 @@ ubuntu 个人文件夹 中文转英文
 2、安装openJDK
 
     sudo apt-get install default-jre
-
     sudo apt-get install default-jdk
 
 默认安装在usr/lib/jvm下，安装成功了，可以通过java -version进行查看，如要设为默认的，可进行如下步骤 
@@ -207,10 +246,13 @@ ubuntu 个人文件夹 中文转英文
     export PATH="$JAVA_HOME/bin:$PATH"
 
 添加相应的path路径:
+
     sudo gedit /etc/environment
+
 ####################END##############################
 
 MAC 禁用dashboard 
+
     defaults write com.apple.dashboard mcx-disabled -boolean YES && killall Dock
 
 #########################################################
@@ -258,6 +300,7 @@ MAC 禁用dashboard
 ubuntu vi编辑模式，backspace，上，下，左，右，无效的解决方法
 1.重新安装VIM
 2.在.bashrc中添加
+
     set nocompatible
     set backspace=2 
 
@@ -274,11 +317,13 @@ SSH免登陆服务器配置
 给用户添加root权限,修改/etc/group
 
 从.git创建git初始仓库
+
     git clone --bare -l /home/proj/.git /pub/scm/proj.git
 
 
 修改ubuntu ip:修改/etc/network/interfaces
 添加固定ip:
+
     auto eth0
     iface eth0 inet static
     address xxx.xxx.xxx.xxx
@@ -287,17 +332,20 @@ SSH免登陆服务器配置
 
 修改ubuntu 系统语言
 修改/etc/default/locale
+
     LANG="en_US.UTF-8"
     LANGUAGE="en_US:en"
 
     locale-gen -en_US:en
 
-中文可安装 
+中文可安装
+
     sudo apt-get install zhcon
 
 ###########################################################
 ######## 配置samba服务 ###############
 安装samba
+
     sudo apt-get install samba smbfs
 
     sudo useradd [myname]
@@ -308,11 +356,13 @@ SSH免登陆服务器配置
     sudo smbpasswd -x [myname] 删除
 
 新增网络使用者的帐号：
+
     sudo gedit /etc/samba/smbusers
     [myname]= "networkusername"
 
 修改/etc/samba/smb.conf
 添加
+
 [share]
     comment = Ubuntu File Server Share
     path = /home/share
@@ -330,25 +380,34 @@ SSH免登陆服务器配置
     force group = nogroup
 
 修改workgroup
+
     workgroup = [workgroup](用户组)
     display charset = UTF-8
     unix charset = UTF-8
     dos charset = cp936
  
 保存并关闭配置文件，在终端中输入如下命令
+
     sudo testparm
+
 重新启动服务
+
     sudo /etc/init.d/samba restart
 
 查看磁盘大小
+
     df -hl
     du -sm
+    
 下面是相关命令的解释：
+
     df -hl 查看磁盘剩余空间
     df -h 查看每个根路径的分区大小
     du -sh [目录名] 返回该目录的大小
     du -sm [文件夹] 返回该文件夹总M数
+
 更多功能可以输入一下命令查看：
+
     df --help
     du --help
 
@@ -387,15 +446,18 @@ SSH免登陆服务器配置
     else  
         /usr/sbin/useradd qtss > /dev/null 2>&1  
     fi
+
 将-M修改成-m
 streamingadminserver.pl运行服务
 http://127.0.0.1:1220 管理
 rtsp://127.0.0.1/sample_100kbit.mp4
 DSS 支持的视频文件需要特别的工具对视频 hint 一下，然后就可以在 RTSP 上面用，请下载 mp4box http://www.videohelp.com/tools/mp4box 使用，mp4box同时支持mp4和3gp。
 下载到到解压出后会有个叫 mp4box.exe ，用它在命令行下面运行
+
     C:\mp4box sample.mp4 -hint
 
 ubuntu 安装mp4box
+
     git clone https://github.com/gpac/gpac.git
     cd gpac
     git pull
@@ -404,23 +466,31 @@ ubuntu 安装mp4box
     sudo make install
 
 查进程
+
     ps aux | grep -i xxx
+
 查端口
+
     sudo netstat -ntulp | grep xxx
 
 vs2010代码格式化快捷键ctrl+k,f 引用alt+.
 
 windows 拷贝命令
+
     xcopy /e /y C:\Users\Administrator\Documents F:\Save
     del/e/q C:\Users\Administrator\Documents\xxx.xxx
 
 
 selinux 权限问题
 查看kerner log
+
     adb shell
     cat /proc/kmsg | grep "avc"
-例:scontext=u:r:system_app:s0 tcontext=u:object_r:media_data_file:s0 tclass=dir permissive=0 
-    system_app   media_data_file   dir   
+
+例:
+scontext=u:r:system_app:s0 tcontext=u:object_r:media_data_file:s0 tclass=dir permissive=0
+system_app   media_data_file   dir   
+
 修改/external/sepolicy/下文件
 system_app.te
 添加allow system_app media_data_file:dir open;
@@ -433,28 +503,33 @@ Git将本地仓库上传到远程仓库:
 
 
 windows映射远程盘符到本地盘符
+
     e.g. net use Y: \\192.168.10.2\zhangshaobin 123123 /user:zhangshaobin
-    
+
 启动network
+
     netsh wlan start hostednetwork
 
 
 vmliux（out\target\product\sp9832a_3h10_volte\obj\KERNEL\vmliux）
 
+将tag push到远程仓库
 
-git push --tags 将tag push到远程仓库
+    git push --tags
 
 ==============================================================================
 android 7.0 编译
 编译办法:
 比如说编译sp7731c_1h10_32v4_native-user
 执行如下命令:
+
     source build/envsetup.sh
     lunch sp7731c_1h10_32v4_native-user
     kheader
     IDH_PROP_ZIP=<oprietories-sp7731c_1h10_32v4_native-user.zip的路径> make -jN
 
     IDH_PROP_ZIP=proprietories-sp9832a_2h11_4mvoltesea_tee-user.zip  make -j32
+
 ==============================================================================
 
 360 查看apk版本路径
@@ -493,6 +568,7 @@ index 6d1c8a3..168dd27 100755
 
 
 备份ubuntu系统:
+
     sudo tar -cvpzf sysbackup.tgz --exclude=/proc --exclude=/lost+found --exclude=/home/code/sysbackup.tgz --exclude=/home/code/repositories_20180416.tgz --exclude=/mnt --exclude=/repositories --exclude=/sys --exclude=/media /
 
     tar 是用来备份的程序
@@ -528,6 +604,7 @@ index 6d1c8a3..168dd27 100755
     
     
 数据库备份/恢复命令
+
     mysqldump -h localhost -uroot -p databasename > ./backupfile.sql   备份
     mysql -h localhost -uroot -p databasename < backupfile.sql 恢复
 
@@ -536,39 +613,48 @@ index 6d1c8a3..168dd27 100755
 
 
     mysqldump -hhostname -uusername -ppassword databasename > backupfile.sql
+    
 备份MySQL数据库为带删除表的格式
 备份MySQL数据库为带删除表的格式，能够让该备份覆盖已有数据库而不需要手动删除原有数据库。
 
 
     mysqldump -–add-drop-table -uusername -ppassword databasename > backupfile.sql
+
 直接将MySQL数据库压缩备份
 
 
     mysqldump -hhostname -uusername -ppassword databasename | gzip > backupfile.sql.gz
+
 备份MySQL数据库某个(些)表
 
 
     mysqldump -hhostname -uusername -ppassword databasename specific_table1 specific_table2 > backupfile.sql
+
 同时备份多个MySQL数据库
 
 
     mysqldump -hhostname -uusername -ppassword –databases databasename1 databasename2 databasename3 > multibackupfile.sql
+
 仅仅备份数据库结构
 
 
     mysqldump –no-data –databases databasename1 databasename2 databasename3 > structurebackupfile.sql
+
 备份服务器上所有数据库
 
 
     mysqldump –all-databases > allbackupfile.sql
+
 还原MySQL数据库的命令
 
 
     mysql -hhostname -uusername -ppassword databasename < backupfile.sql
+
 还原压缩的MySQL数据库
 
 
     gunzip < backupfile.sql.gz | mysql -uusername -ppassword databasename
+
 将数据库转移到新服务器
 
 
